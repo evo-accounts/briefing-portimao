@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Briefing — Empreendimento Portimão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F0E8;
+    --paper: #FBF9F4;
+    --ink: #1D2321;
+    --ink-soft: #55605B;
+    --line: #DCD5C7;
+    --line-strong: #BDB4A2;
+    --accent: #1F4E5A;
+    --accent-soft: #E3ECEC;
+    --ochre: #A8732F;
+    --ochre-soft: #F3E7D3;
+    --danger: #A33A2B;
+    --ok: #2F6B4F;
+    --radius: 14px;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+
+  /* Top bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 820px; margin: 0 auto; padding: 14px 24px 12px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .brand { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+  .steps { display: flex; gap: 6px; margin-left: auto; }
+  .steps a {
+    font: 600 12px/1 var(--sans); color: var(--ink-soft); text-decoration: none;
+    padding: 7px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap;
+  }
+  .steps a:hover { border-color: var(--line-strong); color: var(--ink); }
+  .steps a.active { background: var(--ink); color: var(--paper); }
+  .progress { height: 2px; background: transparent; }
+  .progress > span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+
+  /* Layout */
+  main { max-width: 820px; margin: 0 auto; padding: 56px 24px 96px; }
+  .hero { margin-bottom: 48px; }
+  .eyebrow { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; }
+  h1 {
+    font: 400 clamp(42px, 7vw, 68px)/1.02 var(--serif);
+    letter-spacing: -.01em; margin: 0 0 22px;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lead { font-size: 18px; color: var(--ink-soft); max-width: 640px; margin: 0 0 16px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
+  .meta span { display: inline-flex; align-items: center; gap: 8px; }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 36px 28px;
+    margin-bottom: 28px;
+  }
+  .section-head { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: baseline; margin-bottom: 28px; }
+  .section-num { font: 400 54px/0.9 var(--serif); color: var(--accent); grid-row: span 2; }
+  h2 { font: 400 32px/1.1 var(--serif); margin: 0; }
+  .section-intro { color: var(--ink-soft); margin: 0; font-size: 15px; }
+
+  /* Questions */
+  .q { padding: 22px 0; border-top: 1px solid var(--line); }
+  .q:first-of-type { border-top: 0; padding-top: 0; }
+  .q-label { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; font-weight: 500; }
+  .q-num { font: 600 13px/1.6 var(--sans); color: var(--ink-soft); min-width: 30px; font-variant-numeric: tabular-nums; }
+  .q-text { flex: 1; }
+  .badge {
+    display: inline-block; margin-left: 8px; vertical-align: 2px;
+    font: 700 10px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ochre); background: var(--ochre-soft); padding: 4px 7px; border-radius: 999px;
+  }
+  textarea, input[type="text"], input[type="email"], input[type="tel"], input[type="url"] {
+    width: 100%;
+    font: 400 16px/1.5 var(--sans);
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  textarea { min-height: 96px; resize: vertical; padding-left: 14px; }
+  .q textarea, .q input { margin-left: 42px; width: calc(100% - 42px); }
+  textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  ::placeholder { color: #9A9C95; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field label { display: block; font-weight: 500; font-size: 14px; margin-bottom: 8px; }
+  .field .req { color: var(--danger); }
+
+  /* Scale */
+  .scale-intro { margin: 30px 0 6px; font-weight: 500; }
+  .scale-help { margin: 0 0 18px; color: var(--ink-soft); font-size: 14px; }
+  .scale { border: 0; margin: 0; padding: 12px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 14px; }
+  .scale:last-of-type { border-bottom: 1px solid var(--line); }
+  .scale legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .pole { font-size: 15px; }
+  .pole.right { text-align: right; }
+  .dots { display: flex; gap: 6px; }
+  .dots input { position: absolute; opacity: 0; pointer-events: none; }
+  .dots label {
+    width: 38px; height: 38px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1px solid var(--line-strong); background: #fff;
+    font: 600 13px/1 var(--sans); color: var(--ink-soft);
+    cursor: pointer; transition: all .15s;
+  }
+  .dots label:hover { border-color: var(--accent); color: var(--accent); }
+  .dots input:checked + label { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .dots input:focus-visible + label { box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  /* Materials */
+  .material { padding: 22px 0; border-top: 1px solid var(--line); }
+  .material:first-of-type { border-top: 0; padding-top: 0; }
+  .material h3 { font: 600 15px/1.3 var(--sans); margin: 0 0 14px; }
+  .material .grid-2 label { font-size: 13px; color: var(--ink-soft); font-weight: 500; display: block; margin-bottom: 6px; }
+  .material textarea { min-height: 76px; }
+  .files { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .files p { margin: 0 0 16px; color: var(--ink-soft); font-size: 15px; }
+  .checks { border: 0; padding: 0; margin: 0 0 18px; display: grid; gap: 10px; }
+  .checks legend { font-weight: 500; margin-bottom: 10px; padding: 0; }
+  .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: 15px; }
+  .check input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+
+  /* Submit */
+  .submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 8px; }
+  button {
+    font: 600 16px/1 var(--sans); color: #fff; background: var(--ink);
+    border: 0; border-radius: 999px; padding: 18px 30px; cursor: pointer;
+    transition: background .15s, transform .15s;
+  }
+  button:hover { background: var(--accent); }
+  button:active { transform: translateY(1px); }
+  button[disabled] { opacity: .55; cursor: progress; }
+  .hint { font-size: 14px; color: var(--ink-soft); margin: 0; }
+  .status { margin-top: 16px; font-size: 15px; min-height: 1.6em; }
+  .status.error { color: var(--danger); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .thanks { display: none; text-align: center; padding: 72px 36px; }
+  .thanks h2 { font-size: 44px; margin-bottom: 14px; }
+  .thanks p { color: var(--ink-soft); max-width: 460px; margin: 0 auto; }
+  body.sent form, body.sent .hero { display: none; }
+  body.sent .thanks { display: block; }
+
+  footer { max-width: 820px; margin: 0 auto; padding: 0 24px 48px; color: var(--ink-soft); font-size: 13px; }
+
+  @media (max-width: 680px) {
+    main { padding: 36px 16px 72px; }
+    .topbar-inner { padding: 12px 16px 10px; }
+    .brand { display: none; }
+    .steps { margin-left: 0; width: 100%; justify-content: space-between; }
+    .steps a { padding: 7px 8px; font-size: 12px; }
+    .steps .n { display: none; }
+    .card { padding: 26px 18px 20px; }
+    .section-num { font-size: 42px; }
+    h2 { font-size: 27px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .q textarea, .q input { margin-left: 0; width: 100%; }
+    .q-num { min-width: 28px; }
+    .scale { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .dots { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; }
+    .dots label { width: 44px; height: 44px; }
+    .pole { font-size: 14px; }
+    button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">evodesign.studio</div>
+    <nav class="steps" aria-label="Secções">
+      <a href="#s0">Contacto</a>
+      <a href="#s1"><span class="n">1 · </span>Projeto</a>
+      <a href="#s2"><span class="n">2 · </span>Público</a>
+      <a href="#s3"><span class="n">3 · </span>Visual</a>
+      <a href="#s4"><span class="n">4 · </span>Materiais</a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</div>
+
+<main>
+  <header class="hero">
+    <p class="eyebrow">Briefing de identidade visual</p>
+    <h1>Empreendimento <em>Portimão</em></h1>
+    <p class="lead">Estas perguntas focam-se no que precisamos para criar a identidade visual do empreendimento e o respetivo brand book. Para a brochura, o plan book, o outdoor e o sales office pedimos apenas exemplos de projetos anteriores e as ideias de mensagem que já tenham.</p>
+    <div class="meta">
+      <span><span class="badge" style="margin:0">Essencial</span> perguntas mais importantes para começar</span>
+      <span>As respostas ficam guardadas neste dispositivo enquanto preenchem</span>
+    </div>
+  </header>
+
+  <form id="briefing" novalidate>
+    <div class="hp" aria-hidden="true">
+      <label>Não preencher <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <!-- 0. Contacto -->
+    <section class="card" id="s0">
+      <div class="section-head">
+        <div class="section-num">—</div>
+        <h2>Quem responde</h2>
+        <p class="section-intro">Para sabermos a quem voltar com dúvidas.</p>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="f-nome">Nome <span class="req">*</span></label>
+          <input type="text" id="f-nome" name="nome" data-label="Nome" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span class="req">*</span></label>
+          <input type="email" id="f-email" name="email" data-label="Email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-empresa">Empresa / promotor</label>
+          <input type="text" id="f-empresa" name="empresa" data-label="Empresa / promotor" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-tel">Telefone</label>
+          <input type="tel" id="f-tel" name="telefone" data-label="Telefone" autocomplete="tel">
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. O projeto -->
+    <section class="card" id="s1">
+      <div class="section-head">
+        <div class="section-num">1</div>
+        <h2>O projeto</h2>
+        <p class="section-intro">O nome, a arquitetura e o lugar são a matéria-prima da marca.</p>
+      </div>
+
+      <div class="q">
+        <label class="q-label" for="q11"><span class="q-num">1.1</span><span class="q-text">Qual é o nome do empreendimento e qual é a sua história ou significado?<span class="badge">Essencial</span></span></label>
+        <textarea id="q11" name="q11" data-label="1.1 Nome e significado" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q12"><span class="q-num">1.2</span><span class="q-text">Qual é o conceito arquitetónico? Há formas, materiais ou detalhes da arquitetura que devam inspirar a marca?<span class="badge">Essencial</span></span></label>
+        <textarea id="q12" name="q12" data-label="1.2 Conceito arquitetónico" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q13"><span class="q-num">1.3</span><span class="q-text">Que elementos da envolvente são marcantes (luz, falésias, vegetação, história do local, tradição conserveira) e quais são clichés a evitar?</span></label>
+        <textarea id="q13" name="q13" data-label="1.3 Envolvente e clichés a evitar" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q14"><span class="q-num">1.4</span><span class="q-text">Que áreas comuns ou serviços definem a experiência de viver ali (piscina, spa, rooftop, jardins, concierge)?</span></label>
+        <textarea id="q14" name="q14" data-label="1.4 Áreas comuns e serviços" data-track></textarea>
+      </div>
+    </section>
+
+    <!-- 2. Público e posicionamento -->
+    <section class="card" id="s2">
+      <div class="section-head">
+        <div class="section-num">2</div>
+        <h2>Público e posicionamento</h2>
+        <p class="section-intro">Quem compra, e porque compra aqui, define o registo da marca.</p>
+      </div>
+
+      <div class="q">
+        <label class="q-label" for="q21"><span class="q-num">2.1</span><span class="q-text">Quem é o comprador principal (residente permanente, segunda habitação, investidor, reformado) e de que nacionalidades? Ordenem por prioridade.<span class="badge">Essencial</span></span></label>
+        <textarea id="q21" name="q21" data-label="2.1 Comprador e nacionalidades" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q22"><span class="q-num">2.2</span><span class="q-text">O que mais valoriza este comprador e que estilo de vida procura (praia, wellness, golfe, vida urbana, família)?</span></label>
+        <textarea id="q22" name="q22" data-label="2.2 O que valoriza e estilo de vida" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q23"><span class="q-num">2.3</span><span class="q-text">Porque é que alguém deve comprar aqui e não noutro empreendimento? Que concorrentes conhecem bem e como se querem distinguir visualmente deles?<span class="badge">Essencial</span></span></label>
+        <textarea id="q23" name="q23" data-label="2.3 Diferenciação e concorrentes" data-track></textarea>
+      </div>
+    </section>
+
+    <!-- 3. Personalidade e linguagem visual -->
+    <section class="card" id="s3">
+      <div class="section-head">
+        <div class="section-num">3</div>
+        <h2>Personalidade e linguagem visual</h2>
+        <p class="section-intro">Conhecer preferências e limites antes de desenhar poupa rondas de revisão.</p>
+      </div>
+
+      <div class="q">
+        <label class="q-label" for="q31"><span class="q-num">3.1</span><span class="q-text">Que três palavras devem descrever a marca e que sensação deve ficar a quem a vê pela primeira vez?<span class="badge">Essencial</span></span></label>
+        <textarea id="q31" name="q31" data-label="3.1 Três palavras e primeira impressão" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q32"><span class="q-num">3.2</span><span class="q-text">Há cores, imagens ou estilos que associam ao projeto, e outros que estão fora de questão?<span class="badge">Essencial</span></span></label>
+        <textarea id="q32" name="q32" data-label="3.2 Cores, imagens e estilos" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q33"><span class="q-num">3.3</span><span class="q-text">Há materiais, texturas ou padrões que devam fazer parte da linguagem (pedra, madeira, cal, azulejo, padrões geométricos)?</span></label>
+        <textarea id="q33" name="q33" data-label="3.3 Materiais, texturas e padrões" data-track></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label" for="q34"><span class="q-num">3.4</span><span class="q-text">Se a marca fosse um hotel ou uma marca de moda, qual seria? Indiquem 3 a 5 referências visuais de que gostam e 2 a 3 de que não gostam, com o porquê.<span class="badge">Essencial</span></span></label>
+        <textarea id="q34" name="q34" data-label="3.4 Referências visuais" data-track placeholder="Podem colar links de sites, Instagram ou Pinterest"></textarea>
+      </div>
+
+      <p class="scale-intro">Posicionem a marca entre cada par de polos</p>
+      <p class="scale-help">1 = totalmente o polo da esquerda, 5 = totalmente o da direita.</p>
+      <div id="scales"></div>
+    </section>
+
+    <!-- 4. Materiais a enviar -->
+    <section class="card" id="s4">
+      <div class="section-head">
+        <div class="section-num">4</div>
+        <h2>Materiais a enviar</h2>
+        <p class="section-intro">Para a brochura, o plan book, o outdoor e o sales office basta-nos ver exemplos de projetos anteriores e conhecer as ideias de copy ou a mensagem que imaginam para cada peça.</p>
+      </div>
+
+      <div id="materials"></div>
+
+      <div class="files">
+        <p>Com estes ficheiros conseguimos começar a pesquisa visual enquanto chegam as respostas. Partilhem-nos numa pasta (Google Drive, Dropbox ou WeTransfer) e assinalem o que incluíram.</p>
+        <fieldset class="checks" data-label="Ficheiros incluídos">
+          <legend>O que vai na pasta partilhada</legend>
+          <label class="check"><input type="checkbox" name="files" value="Manual de marca do promotor e logótipos dos parceiros"> Manual de marca do promotor e logótipos dos parceiros</label>
+          <label class="check"><input type="checkbox" name="files" value="Identidade e materiais do Primelife Carvoeiro"> Identidade e materiais do Primelife Carvoeiro, em ficheiro aberto se possível</label>
+          <label class="check"><input type="checkbox" name="files" value="Renders, plantas ou imagens do projeto"> Renders, plantas ou imagens do projeto de arquitetura</label>
+          <label class="check"><input type="checkbox" name="files" value="Fotografias do terreno e da envolvente"> Fotografias do terreno e da envolvente</label>
+          <label class="check"><input type="checkbox" name="files" value="Referências visuais"> Referências visuais (links ou imagens)</label>
+        </fieldset>
+        <div class="field">
+          <label for="f-pasta">Link da pasta partilhada</label>
+          <input type="url" id="f-pasta" name="pasta" data-label="Link da pasta partilhada" placeholder="https://">
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="field">
+        <label for="f-notas">Há mais alguma coisa que devamos saber?</label>
+        <textarea id="f-notas" name="notas" data-label="Notas finais"></textarea>
+      </div>
+    </section>
+
+    <div class="submit-row">
+      <button type="submit" id="submit">Enviar briefing</button>
+      <p class="hint">Podem enviar mesmo sem responder a tudo; o resto fechamos na reunião de kickoff.</p>
+    </div>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </form>
+
+  <section class="card thanks" aria-live="polite">
+    <h2>Obrigado</h2>
+    <p>Recebemos o vosso briefing. Vamos analisá-lo e entraremos em contacto para marcar a reunião de kickoff.</p>
+  </section>
+</main>
+
+<footer>evodesign.studio</footer>
+
+<script>
+(function () {
+  var ENDPOINT = "https://formsubmit.co/ajax/jp@evodesign.studio";
+  var DRAFT_KEY = "briefing-portimao-v1";
+
+  var SCALES = [
+    ["Clássico", "Contemporâneo"],
+    ["Discreto", "Expressivo"],
+    ["Local / algarvio", "Internacional"],
+    ["Exclusivo", "Acessível"],
+    ["Sóbrio", "Caloroso"],
+    ["Minimalista", "Rico em detalhe"],
+    ["Natureza / mar", "Urbano / arquitetura"],
+    ["Institucional", "Próximo"],
+    ["Factual", "Poético"]
+  ];
+
+  var MATERIALS = [
+    { key: "brochura", name: "Brochura", example: "" },
+    { key: "planbook", name: "Plan book", example: "https://primelifecarvoeiro.pt/img/3D_2DPlans_Primelife.pdf" },
+    { key: "outdoor", name: "Outdoor / lona", example: "" },
+    { key: "salesoffice", name: "Montra / sales office", example: "" }
+  ];
+
+  var form = document.getElementById("briefing");
+  var statusEl = document.getElementById("status");
+  var btn = document.getElementById("submit");
+
+  // Build scale rows
+  var scalesEl = document.getElementById("scales");
+  SCALES.forEach(function (pair, i) {
+    var fs = document.createElement("fieldset");
+    fs.className = "scale";
+    fs.setAttribute("data-label", "Escala: " + pair[0] + " ↔ " + pair[1]);
+    var html = '<legend>' + pair[0] + ' ou ' + pair[1] + '</legend>' +
+      '<span class="pole">' + pair[0] + '</span><div class="dots">';
+    for (var n = 1; n <= 5; n++) {
+      var id = "sc" + i + "-" + n;
+      html += '<input type="radio" id="' + id + '" name="scale' + i + '" value="' + n + '">' +
+              '<label for="' + id + '" aria-label="' + n + '">' + n + '</label>';
+    }
+    html += '</div><span class="pole right">' + pair[1] + '</span>';
+    fs.innerHTML = html;
+    scalesEl.appendChild(fs);
+  });
+
+  // Build material rows
+  var matEl = document.getElementById("materials");
+  MATERIALS.forEach(function (m) {
+    var div = document.createElement("div");
+    div.className = "material";
+    div.innerHTML =
+      '<h3>' + m.name + '</h3>' +
+      '<div class="grid-2">' +
+        '<div><label for="ex-' + m.key + '">Exemplos de projetos anteriores (links)</label>' +
+        '<textarea id="ex-' + m.key + '" name="ex_' + m.key + '" data-label="' + m.name + ': exemplos" data-track placeholder="https://"></textarea></div>' +
+        '<div><label for="msg-' + m.key + '">Ideias de copy ou mensagem</label>' +
+        '<textarea id="msg-' + m.key + '" name="msg_' + m.key + '" data-label="' + m.name + ': copy e mensagem" data-track></textarea></div>' +
+      '</div>';
+    matEl.appendChild(div);
+    if (m.example) div.querySelector("textarea").value = m.example;
+  });
+
+  // Draft autosave (per-device convenience only)
+  function saveDraft() {
+    var data = {};
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || el.name === "_honey") return;
+      if (el.type === "radio") { if (el.checked) data[el.name] = el.value; }
+      else if (el.type === "checkbox") { data[el.name] = data[el.name] || []; if (el.checked) data[el.name].push(el.value); }
+      else data[el.name] = el.value;
+    });
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function loadDraft() {
+    var data;
+    try { data = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { data = null; }
+    if (!data) return;
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || !(el.name in data)) return;
+      var v = data[el.name];
+      if (el.type === "radio") el.checked = (v === el.value);
+      else if (el.type === "checkbox") el.checked = Array.isArray(v) && v.indexOf(el.value) !== -1;
+      else el.value = v;
+    });
+  }
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+
+  // Progress bar over the tracked questions
+  var tracked = form.querySelectorAll("[data-track]");
+  var progressEl = document.getElementById("progress");
+  function updateProgress() {
+    var filled = 0;
+    tracked.forEach(function (el) { if (el.value.trim()) filled++; });
+    progressEl.style.width = Math.round(filled / tracked.length * 100) + "%";
+  }
+
+  // Auto-grow textareas
+  function grow(el) { el.style.height = "auto"; el.style.height = Math.max(el.scrollHeight + 2, 76) + "px"; }
+
+  function growAll() { form.querySelectorAll("textarea").forEach(grow); }
+
+  loadDraft();
+  updateProgress();
+  window.addEventListener("load", growAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(growAll);
+  var resizeTimer;
+  window.addEventListener("resize", function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(growAll, 150); });
+
+  var saveTimer;
+  form.addEventListener("input", function (e) {
+    if (e.target.tagName === "TEXTAREA") grow(e.target);
+    updateProgress();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveDraft, 400);
+  });
+  form.addEventListener("change", saveDraft);
+
+  // Highlight current section in the top bar
+  var links = document.querySelectorAll(".steps a");
+  var sections = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute("href")); });
+  function onScroll() {
+    var current = 0;
+    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < 140) current = i; });
+    links.forEach(function (a, i) { a.classList.toggle("active", i === current); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Collect answers in page order, labelled for the email
+  function collect() {
+    var nome = form.nome.value.trim();
+    var empresa = form.empresa.value.trim();
+    var payload = {
+      _subject: "Briefing Portimão — " + (empresa || nome || "nova resposta"),
+      _template: "table",
+      _captcha: "false",
+      _replyto: form.email.value.trim()
+    };
+    form.querySelectorAll("[data-label]").forEach(function (el) {
+      var label = el.getAttribute("data-label");
+      var value;
+      if (el.tagName === "FIELDSET") {
+        var checked = el.querySelectorAll("input:checked");
+        value = Array.prototype.map.call(checked, function (i) { return i.value; }).join("; ");
+      } else {
+        value = el.value.trim();
+      }
+      payload[label] = value || "—";
+    });
+    return payload;
+  }
+
+  function setStatus(msg, isError) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (isError ? " error" : "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form._honey.value) return;
+    if (!form.checkValidity()) {
+      var bad = form.querySelector(":invalid");
+      setStatus("Preencham o nome e um email válido antes de enviar.", true);
+      if (bad) { bad.focus(); }
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = "A enviar…";
+    setStatus("");
+
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(collect())
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
+      .then(function (res) {
+        if (res.ok && String(res.body.success) === "true") {
+          clearDraft();
+          document.body.classList.add("sent");
+          window.scrollTo(0, 0);
+          return;
+        }
+        var msg = (res.body && res.body.message) || "";
+        var err = new Error(msg);
+        err.userMessage = /activat/i.test(msg)
+          ? "O formulário ainda aguarda ativação pelo destinatário. As respostas continuam guardadas neste dispositivo; tentem novamente mais tarde."
+          : "Não foi possível enviar. As respostas continuam guardadas neste dispositivo; tentem novamente dentro de momentos.";
+        throw err;
+      })
+      .catch(function (err) {
+        setStatus((err && err.userMessage) ||
+          "Sem ligação ao servidor. As respostas continuam guardadas neste dispositivo; tentem novamente.", true);
+        btn.disabled = false;
+        btn.textContent = "Enviar briefing";
+      });
+  });
+})();
+</script>
+</body>
+</html>
