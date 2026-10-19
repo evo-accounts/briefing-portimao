@@ -157,9 +157,37 @@
   .dots input:focus-visible + label { outline: 2px solid var(--color-brand); outline-offset: 2px; }
 
   /* Materials */
-  .material { margin-bottom: 20px; }
-  .material h3 { font-size: var(--text-h5); font-weight: 400; line-height: 1.2; margin: 0 0 4px; }
-  .material .field-label { font-size: var(--text-small); color: var(--color-gray-600); }
+  .upload .field-label { margin-bottom: 14px; align-items: center; }
+  .opt {
+    font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--color-gray-600); background: var(--color-gray-100); padding: 5px 9px; border-radius: 999px;
+  }
+  .drop {
+    position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; text-align: center; padding: 40px 24px;
+    border: 1px dashed var(--color-gray-300); border-radius: var(--radius-2xl);
+    background: var(--color-gray-50); cursor: pointer;
+    transition: border-color .2s var(--ease-out), background-color .2s var(--ease-out);
+  }
+  .drop:hover, .drop.over { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-primary-100) 45%, #fff); }
+  .drop:focus-within { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+  .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .drop-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--color-background); color: #fff; display: grid; place-items: center; margin-bottom: 8px; }
+  .drop-icon svg { width: 22px; height: 22px; }
+  .drop-title u { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-brand); }
+  .drop-help { font-size: var(--text-small); color: var(--color-gray-500); }
+  .file-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+  .file-list li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--color-gray-100); border-radius: var(--radius-xl); }
+  .file-list .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-list .size { color: var(--color-gray-500); font-size: var(--text-small); white-space: nowrap; }
+  .file-list button {
+    width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; border: 1px solid var(--color-gray-200);
+    background: #fff; color: var(--color-gray-600); cursor: pointer; display: grid; place-items: center; padding: 0;
+    transition: border-color .2s var(--ease-out), color .2s var(--ease-out);
+  }
+  .file-list button:hover { border-color: var(--color-gray-400); color: var(--color-gray-800); }
+  .file-total { font-size: var(--text-small); color: var(--color-gray-600); margin: 10px 0 0; min-height: 1.5em; }
+  .file-total.error { color: var(--color-danger); }
   .files { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--color-gray-100); }
   .files > p { color: var(--color-gray-600); margin: 0 0 24px; max-width: 560px; }
   .checks { border: 0; padding: 0; margin: 0 0 36px; display: grid; gap: 14px; }
@@ -266,7 +294,7 @@
   <div class="container">
     <p class="hat">Briefing de identidade visual</p>
     <h1>Empreendimento <span class="brand">Portimão</span></h1>
-    <p class="lead">Estas perguntas focam-se no que precisamos para criar a identidade visual do empreendimento e o respetivo brand book. Para a brochura, o plan book, o outdoor e o sales office pedimos apenas exemplos de projetos anteriores e as ideias de mensagem que já tenham.</p>
+    <p class="lead">Estas perguntas focam-se no que precisamos para criar a identidade visual do empreendimento e o respetivo brand book. Para a brochura, o plan book, o outdoor e o sales office pedimos apenas materiais de projetos anteriores, como referência.</p>
     <div class="meta">
       <span><span class="tag">Essencial</span> perguntas mais importantes para começar</span>
       <span>As respostas ficam guardadas neste dispositivo enquanto preenchem</span>
@@ -274,7 +302,7 @@
   </div>
 </header>
 
-<form id="briefing" novalidate>
+<form id="briefing" action="https://formsubmit.co/jp@evodesign.studio" method="POST" enctype="multipart/form-data" novalidate>
   <div class="hp" aria-hidden="true">
     <label>Não preencher <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
   </div>
@@ -288,13 +316,13 @@
         <p class="section-intro">O nome, a arquitetura e o lugar são a matéria-prima da marca.</p>
       </div>
       <label class="field q"><span class="field-label"><span class="q-num">1.1</span><span class="q-text">Qual é o nome do empreendimento e qual é a sua história ou significado?<span class="tag">Essencial</span></span></span>
-        <textarea name="q11" rows="2" data-label="1.1 Nome e significado" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q11" rows="2" data-label="Projeto · Nome e significado" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">1.2</span><span class="q-text">Qual é o conceito arquitetónico? Há formas, materiais ou detalhes da arquitetura que devam inspirar a marca?<span class="tag">Essencial</span></span></span>
-        <textarea name="q12" rows="2" data-label="1.2 Conceito arquitetónico" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q12" rows="2" data-label="Projeto · Conceito arquitetónico" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">1.3</span><span class="q-text">Que elementos da envolvente são marcantes (luz, falésias, vegetação, história do local, tradição conserveira) e quais são clichés a evitar?</span></span>
-        <textarea name="q13" rows="2" data-label="1.3 Envolvente e clichés a evitar" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q13" rows="2" data-label="Projeto · Envolvente e clichés a evitar" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">1.4</span><span class="q-text">Que áreas comuns ou serviços definem a experiência de viver ali (piscina, spa, rooftop, jardins, concierge)?</span></span>
-        <textarea name="q14" rows="2" data-label="1.4 Áreas comuns e serviços" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q14" rows="2" data-label="Projeto · Áreas comuns e serviços" data-track placeholder="Escrevam aqui"></textarea></label>
     </div>
   </section>
 
@@ -307,11 +335,11 @@
         <p class="section-intro">Quem compra, e porque compra aqui, define o registo da marca.</p>
       </div>
       <label class="field q"><span class="field-label"><span class="q-num">2.1</span><span class="q-text">Quem é o comprador principal (residente permanente, segunda habitação, investidor, reformado) e de que nacionalidades? Ordenem por prioridade.<span class="tag">Essencial</span></span></span>
-        <textarea name="q21" rows="2" data-label="2.1 Comprador e nacionalidades" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q21" rows="2" data-label="Público · Comprador e nacionalidades" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">2.2</span><span class="q-text">O que mais valoriza este comprador e que estilo de vida procura (praia, wellness, golfe, vida urbana, família)?</span></span>
-        <textarea name="q22" rows="2" data-label="2.2 O que valoriza e estilo de vida" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q22" rows="2" data-label="Público · O que valoriza e estilo de vida" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">2.3</span><span class="q-text">Porque é que alguém deve comprar aqui e não noutro empreendimento? Que concorrentes conhecem bem e como se querem distinguir visualmente deles?<span class="tag">Essencial</span></span></span>
-        <textarea name="q23" rows="2" data-label="2.3 Diferenciação e concorrentes" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q23" rows="2" data-label="Público · Diferenciação e concorrentes" data-track placeholder="Escrevam aqui"></textarea></label>
     </div>
   </section>
 
@@ -324,13 +352,13 @@
         <p class="section-intro">Conhecer preferências e limites antes de desenhar poupa rondas de revisão.</p>
       </div>
       <label class="field q"><span class="field-label"><span class="q-num">3.1</span><span class="q-text">Que três palavras devem descrever a marca e que sensação deve ficar a quem a vê pela primeira vez?<span class="tag">Essencial</span></span></span>
-        <textarea name="q31" rows="2" data-label="3.1 Três palavras e primeira impressão" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q31" rows="2" data-label="Visual · Três palavras e primeira impressão" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">3.2</span><span class="q-text">Há cores, imagens ou estilos que associam ao projeto, e outros que estão fora de questão?<span class="tag">Essencial</span></span></span>
-        <textarea name="q32" rows="2" data-label="3.2 Cores, imagens e estilos" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q32" rows="2" data-label="Visual · Cores, imagens e estilos" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">3.3</span><span class="q-text">Há materiais, texturas ou padrões que devam fazer parte da linguagem (pedra, madeira, cal, azulejo, padrões geométricos)?</span></span>
-        <textarea name="q33" rows="2" data-label="3.3 Materiais, texturas e padrões" data-track placeholder="Escrevam aqui"></textarea></label>
+        <textarea name="q33" rows="2" data-label="Visual · Materiais, texturas e padrões" data-track placeholder="Escrevam aqui"></textarea></label>
       <label class="field q"><span class="field-label"><span class="q-num">3.4</span><span class="q-text">Se a marca fosse um hotel ou uma marca de moda, qual seria? Indiquem 3 a 5 referências visuais de que gostam e 2 a 3 de que não gostam, com o porquê.<span class="tag">Essencial</span></span></span>
-        <textarea name="q34" rows="2" data-label="3.4 Referências visuais" data-track placeholder="Podem colar links de sites, Instagram ou Pinterest"></textarea></label>
+        <textarea name="q34" rows="2" data-label="Visual · Referências visuais" data-track placeholder="Podem colar links de sites, Instagram ou Pinterest"></textarea></label>
 
       <div class="scale-head">
         <p>Posicionem a marca entre cada par de polos</p>
@@ -346,17 +374,26 @@
       <div class="section-head">
         <p class="hat">Secção 04</p>
         <h2>Materiais a enviar</h2>
-        <p class="section-intro">Para a brochura, o plan book, o outdoor e o sales office basta-nos ver exemplos de projetos anteriores e conhecer as ideias de copy ou a mensagem que imaginam para cada peça.</p>
+        <p class="section-intro">Se tiverem brochuras, plan books, outdoors ou materiais de sales office de projetos anteriores, enviem-nos como referência. A mensagem e o copy de cada peça serão alinhados mais tarde.</p>
       </div>
 
-      <div id="materials"></div>
+      <div class="upload">
+        <div class="field-label">Materiais anteriores de referência <span class="opt">Opcional</span></div>
+        <label class="drop" id="drop" for="upload">
+          <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4L7 9M12 4L17 9M4 15V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="drop-title">Arrastem os ficheiros para aqui ou <u>escolham do computador</u></span>
+          <span class="drop-help">PDF ou imagens, até 10 MB no total</span>
+          <input type="file" id="upload" multiple accept="application/pdf,image/*">
+        </label>
+        <ul class="file-list" id="file-list"></ul>
+        <p class="file-total" id="file-total" aria-live="polite"></p>
+        <div id="file-slots" hidden></div>
+      </div>
 
       <div class="files">
         <p>Com estes ficheiros conseguimos começar a pesquisa visual enquanto chegam as respostas. Partilhem-nos numa pasta (Google Drive, Dropbox ou WeTransfer) e assinalem o que incluíram.</p>
-        <fieldset class="checks" data-label="Ficheiros incluídos">
+        <fieldset class="checks" data-label="Ficheiros incluídos na pasta">
           <legend>O que vai na pasta partilhada</legend>
-          <label class="check"><input type="checkbox" name="files" value="Manual de marca do promotor e logótipos dos parceiros"> Manual de marca do promotor e logótipos dos parceiros</label>
-          <label class="check"><input type="checkbox" name="files" value="Identidade e materiais do Primelife Carvoeiro"> Identidade e materiais do Primelife Carvoeiro, em ficheiro aberto se possível</label>
           <label class="check"><input type="checkbox" name="files" value="Renders, plantas ou imagens do projeto"> Renders, plantas ou imagens do projeto de arquitetura</label>
           <label class="check"><input type="checkbox" name="files" value="Fotografias do terreno e da envolvente"> Fotografias do terreno e da envolvente</label>
           <label class="check"><input type="checkbox" name="files" value="Referências visuais"> Referências visuais (links ou imagens)</label>
@@ -400,8 +437,9 @@
 
 <script>
 (function () {
-  var ENDPOINT = "https://formsubmit.co/ajax/jp@evodesign.studio";
-  var DRAFT_KEY = "briefing-portimao-v2";
+  var DRAFT_KEY = "briefing-portimao-v3";
+  var MAX_BYTES = 10 * 1024 * 1024; // FormSubmit limit across all files
+  var NBSP = " ";
 
   var SCALES = [
     ["Clássico", "Contemporâneo"],
@@ -415,24 +453,25 @@
     ["Factual", "Poético"]
   ];
 
-  var MATERIALS = [
-    { key: "brochura", name: "Brochura", example: "" },
-    { key: "planbook", name: "Plan book", example: "https://primelifecarvoeiro.pt/img/3D_2DPlans_Primelife.pdf" },
-    { key: "outdoor", name: "Outdoor / lona", example: "" },
-    { key: "salesoffice", name: "Montra / sales office", example: "" }
-  ];
-
   var form = document.getElementById("briefing");
   var statusEl = document.getElementById("status");
   var btn = document.getElementById("submit");
   var btnLabel = document.getElementById("submit-label");
+
+  // Back from FormSubmit with ?enviado=1: show the thank-you screen
+  if (new URLSearchParams(location.search).get("enviado") === "1") {
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    document.body.classList.add("sent");
+  }
+  // Coming back through history after a submit: start from a clean page
+  window.addEventListener("pageshow", function (e) { if (e.persisted && form.dataset.submitted) location.reload(); });
 
   // Scale rows
   var scalesEl = document.getElementById("scales");
   SCALES.forEach(function (pair, i) {
     var fs = document.createElement("fieldset");
     fs.className = "scale";
-    fs.setAttribute("data-label", "Escala: " + pair[0] + " ↔ " + pair[1]);
+    fs.setAttribute("data-label", "Escala · " + pair[0] + " ↔ " + pair[1]);
     var html = "<legend>" + pair[0] + " ou " + pair[1] + "</legend>" +
       '<span class="pole">' + pair[0] + '</span><div class="dots">';
     for (var n = 1; n <= 5; n++) {
@@ -445,32 +484,62 @@
     scalesEl.appendChild(fs);
   });
 
-  // Material rows
-  var matEl = document.getElementById("materials");
-  MATERIALS.forEach(function (m) {
-    var div = document.createElement("div");
-    div.className = "material";
-    div.innerHTML =
-      "<h3>" + m.name + "</h3>" +
-      '<div class="grid-2">' +
-        '<label class="field"><span class="field-label">Exemplos de projetos anteriores (links)</span>' +
-        '<textarea name="ex_' + m.key + '" rows="1" data-label="' + m.name + ': exemplos" data-track placeholder="https://"></textarea></label>' +
-        '<label class="field"><span class="field-label">Ideias de copy ou mensagem</span>' +
-        '<textarea name="msg_' + m.key + '" rows="1" data-label="' + m.name + ': copy e mensagem" data-track placeholder="Escrevam aqui"></textarea></label>' +
-      "</div>";
-    matEl.appendChild(div);
-    if (m.example) {
-      var ta = div.querySelector("textarea");
-      ta.value = m.example;
-      ta.setAttribute("data-default", m.example);
-    }
-  });
+  // File upload: one drop zone, files kept in a list until submit
+  var files = [];
+  var drop = document.getElementById("drop");
+  var picker = document.getElementById("upload");
+  var listEl = document.getElementById("file-list");
+  var totalEl = document.getElementById("file-total");
+  var slots = document.getElementById("file-slots");
+  var canSplit = (function () { try { return !!new DataTransfer(); } catch (e) { return false; } })();
 
-  // Draft autosave (per-device convenience only)
+  function fmt(bytes) {
+    return bytes >= 1048576 ? (bytes / 1048576).toFixed(1).replace(".", ",") + " MB" : Math.max(1, Math.round(bytes / 1024)) + " KB";
+  }
+  function totalBytes() { return files.reduce(function (s, f) { return s + f.size; }, 0); }
+  function renderFiles() {
+    listEl.innerHTML = "";
+    files.forEach(function (f, i) {
+      var li = document.createElement("li");
+      var name = document.createElement("span"); name.className = "name"; name.textContent = f.name;
+      var size = document.createElement("span"); size.className = "size"; size.textContent = fmt(f.size);
+      var rm = document.createElement("button"); rm.type = "button"; rm.setAttribute("aria-label", "Remover " + f.name);
+      rm.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      rm.addEventListener("click", function () { files.splice(i, 1); renderFiles(); });
+      li.appendChild(name); li.appendChild(size); li.appendChild(rm);
+      listEl.appendChild(li);
+    });
+    var total = totalBytes();
+    if (!files.length) { totalEl.textContent = ""; totalEl.className = "file-total"; return; }
+    var over = total > MAX_BYTES;
+    totalEl.textContent = over
+      ? "Os ficheiros somam " + fmt(total) + ", acima do limite de 10 MB. Removam algum ou partilhem-nos pelo link da pasta abaixo."
+      : files.length + (files.length === 1 ? " ficheiro" : " ficheiros") + " · " + fmt(total) + " de 10 MB";
+    totalEl.className = "file-total" + (over ? " error" : "");
+  }
+  function addFiles(list) {
+    Array.prototype.forEach.call(list, function (f) {
+      var dup = files.some(function (g) { return g.name === f.name && g.size === f.size; });
+      if (!dup) files.push(f);
+    });
+    if (!canSplit) files = Array.prototype.slice.call(picker.files); // fallback: only the picker's own files
+    renderFiles();
+  }
+  picker.addEventListener("change", function () { addFiles(picker.files); if (canSplit) picker.value = ""; });
+  ["dragenter", "dragover"].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("over"); });
+  });
+  ["dragleave", "drop"].forEach(function (t) {
+    drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove("over"); });
+  });
+  drop.addEventListener("drop", function (e) { if (e.dataTransfer && e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+
+  // Draft autosave (per-device convenience only; files are not kept)
+  function namedFields() { return form.querySelectorAll("textarea[name], input[name]:not([type=file]):not([type=hidden])"); }
   function saveDraft() {
     var data = {};
-    Array.prototype.forEach.call(form.elements, function (el) {
-      if (!el.name || el.name === "_honey") return;
+    namedFields().forEach(function (el) {
+      if (el.name === "_honey") return;
       if (el.type === "radio") { if (el.checked) data[el.name] = el.value; }
       else if (el.type === "checkbox") { data[el.name] = data[el.name] || []; if (el.checked) data[el.name].push(el.value); }
       else data[el.name] = el.value;
@@ -481,15 +550,14 @@
     var data;
     try { data = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { data = null; }
     if (!data) return;
-    Array.prototype.forEach.call(form.elements, function (el) {
-      if (!el.name || !(el.name in data)) return;
+    namedFields().forEach(function (el) {
+      if (!(el.name in data)) return;
       var v = data[el.name];
       if (el.type === "radio") el.checked = (v === el.value);
       else if (el.type === "checkbox") el.checked = Array.isArray(v) && v.indexOf(el.value) !== -1;
       else el.value = v;
     });
   }
-  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
 
   // Progress over the tracked questions
   var tracked = form.querySelectorAll("[data-track]");
@@ -519,7 +587,7 @@
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveDraft, 400);
   });
-  form.addEventListener("change", saveDraft);
+  form.addEventListener("change", function (e) { if (e.target.type !== "file") saveDraft(); });
 
   // Current section in the top bar
   var links = document.querySelectorAll(".steps a");
@@ -532,77 +600,66 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Answers in page order, labelled for the email
-  function collect() {
-    var name = (form.q11.value.trim().split("\n")[0] || "").slice(0, 60);
-    var payload = {
-      _subject: "Briefing Portimão — " + (name || "nova resposta"),
-      _template: "table",
-      _captcha: "false"
-    };
-    form.querySelectorAll("[data-label]").forEach(function (el) {
-      var label = el.getAttribute("data-label");
-      var value;
-      if (el.tagName === "FIELDSET") {
-        value = Array.prototype.map.call(el.querySelectorAll("input:checked"), function (i) { return i.value; }).join("; ");
-      } else {
-        value = el.value.trim();
-      }
-      payload[label] = value || "—";
-    });
-    return payload;
-  }
-
   function hasAnswers() {
-    var any = false;
-    form.querySelectorAll("textarea, input[type=url]").forEach(function (el) {
-      var v = el.value.trim();
-      if (v && v !== (el.getAttribute("data-default") || "")) any = true;
-    });
+    var any = files.length > 0;
+    form.querySelectorAll("textarea, input[type=url]").forEach(function (el) { if (el.value.trim()) any = true; });
     if (form.querySelector("input[type=radio]:checked, input[type=checkbox]:checked")) any = true;
     return any;
   }
-
   function setStatus(msg, isError) {
     statusEl.textContent = msg;
     statusEl.className = "status" + (isError ? " error" : "");
   }
+  function hidden(name, value, after) {
+    var i = document.createElement("input");
+    i.type = "hidden"; i.name = name; i.value = value;
+    if (after) after.insertAdjacentElement("afterend", i); else form.appendChild(i);
+  }
+  // Field names become the labels in the email; non-breaking spaces keep them readable
+  function key(label) { return label.replace(/ /g, NBSP); }
 
+  // Native multipart POST to FormSubmit (needed for attachments), then back with ?enviado=1
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (form._honey.value) return;
-    if (!hasAnswers()) { setStatus("Respondam a pelo menos uma pergunta antes de enviar.", true); return; }
+    if (form._honey.value) { e.preventDefault(); return; }
+    if (!hasAnswers()) { e.preventDefault(); setStatus("Respondam a pelo menos uma pergunta antes de enviar.", true); return; }
+    if (totalBytes() > MAX_BYTES) { e.preventDefault(); setStatus("Os ficheiros ultrapassam 10 MB no total. Removam algum antes de enviar.", true); return; }
 
-    btn.disabled = true;
-    btnLabel.textContent = "A enviar…";
-    setStatus("");
+    var first = (form.querySelector('textarea[name="q11"]').value.trim().split("\n")[0] || "").slice(0, 60);
+    hidden("_subject", "Briefing Portimão — " + (first || "nova resposta"));
+    hidden("_template", "table");
+    hidden("_captcha", "false");
+    hidden("_next", location.origin + location.pathname + "?enviado=1");
 
-    fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(collect())
-    })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
-      .then(function (res) {
-        if (res.ok && String(res.body.success) === "true") {
-          clearDraft();
-          document.body.classList.add("sent");
-          window.scrollTo(0, 0);
-          return;
-        }
-        var msg = (res.body && res.body.message) || "";
-        var err = new Error(msg);
-        err.userMessage = /activat/i.test(msg)
-          ? "O formulário ainda aguarda ativação pelo destinatário. As respostas continuam guardadas neste dispositivo; tentem novamente mais tarde."
-          : "Não foi possível enviar. As respostas continuam guardadas neste dispositivo; tentem novamente dentro de momentos.";
-        throw err;
-      })
-      .catch(function (err) {
-        setStatus((err && err.userMessage) ||
-          "Sem ligação ao servidor. As respostas continuam guardadas neste dispositivo; tentem novamente.", true);
-        btn.disabled = false;
-        btnLabel.textContent = "Enviar briefing";
+    form.querySelectorAll("[data-label]").forEach(function (el) {
+      var label = key(el.getAttribute("data-label"));
+      if (el.tagName === "FIELDSET") {
+        var inputs = el.querySelectorAll("input");
+        var checked = Array.prototype.filter.call(inputs, function (i) { return i.checked; }).map(function (i) { return i.value; });
+        inputs.forEach(function (i) { i.removeAttribute("name"); });
+        if (checked.length) hidden(label, checked.join("; "), el);
+      } else if (el.value.trim()) {
+        el.name = label;
+      } else {
+        el.removeAttribute("name");
+      }
+    });
+
+    if (canSplit) {
+      files.forEach(function (f, i) {
+        var dt = new DataTransfer(); dt.items.add(f);
+        var inp = document.createElement("input");
+        inp.type = "file"; inp.name = key("Anexo " + (i + 1));
+        inp.files = dt.files;
+        slots.appendChild(inp);
       });
+    } else if (picker.files.length) {
+      picker.name = "attachment";
+    }
+
+    form.dataset.submitted = "1";
+    btn.disabled = true;
+    btnLabel.textContent = files.length ? "A enviar ficheiros…" : "A enviar…";
+    setStatus("");
   });
 })();
 </script>
