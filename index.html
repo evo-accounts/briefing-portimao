@@ -277,7 +277,8 @@
   </div>
 </header>
 
-<form id="briefing" action="https://formsubmit.co/jp@evodesign.studio" method="POST" novalidate>
+<form id="briefing" action="https://api.web3forms.com/submit" method="POST" novalidate>
+  <input type="hidden" name="access_key" value="02723e03-58b2-4cb2-991c-2132b7251eab">
   <div class="hp" aria-hidden="true">
     <label>Não preencher <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
   </div>
@@ -406,7 +407,7 @@
 
 <script>
 (function () {
-  var ENDPOINT = "https://formsubmit.co/ajax/jp@evodesign.studio";
+  var ENDPOINT = "https://api.web3forms.com/submit";
   var DRAFT_KEY = "briefing-portimao-v4";
 
   var SCALES = [
@@ -449,7 +450,7 @@
   function saveDraft() {
     var data = {};
     namedFields().forEach(function (el) {
-      if (el.name === "_honey") return;
+      if (el.name === "_honey" || el.type === "hidden") return;
       if (el.type === "radio") { if (el.checked) data[el.name] = el.value; }
       else if (el.type === "checkbox") { data[el.name] = data[el.name] || []; if (el.checked) data[el.name].push(el.value); }
       else data[el.name] = el.value;
@@ -515,9 +516,9 @@
   function collect() {
     var first = (form.querySelector('textarea[name="q11"]').value.trim().split("\n")[0] || "").slice(0, 60);
     var payload = {
-      _subject: "Briefing Bela Formosa — " + (first || "nova resposta"),
-      _template: "table",
-      _captcha: "false"
+      access_key: form.access_key.value,
+      subject: "Briefing Bela Formosa — " + (first || "nova resposta"),
+      from_name: "Briefing Bela Formosa"
     };
     form.querySelectorAll("[data-label]").forEach(function (el) {
       var value;
@@ -567,9 +568,7 @@
         }
         var msg = (res.body && res.body.message) || "";
         var err = new Error(msg);
-        err.userMessage = /activat/i.test(msg)
-          ? "O formulário ainda aguarda ativação pelo destinatário. As respostas continuam guardadas neste dispositivo; tentem novamente mais tarde."
-          : "Não foi possível enviar. As respostas continuam guardadas neste dispositivo; tentem novamente dentro de momentos.";
+        err.userMessage = "Não foi possível enviar. As respostas continuam guardadas neste dispositivo; tentem novamente dentro de momentos.";
         throw err;
       })
       .catch(function (err) {
