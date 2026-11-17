@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Briefing Empreendimento Faro · EVO</title>
+<link rel="preload" href="https://www.evodesign.studio/_next/static/media/PPMori_Extralight-s.p.12axacsl3vlu6.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.evodesign.studio/_next/static/media/PPMori_Regular-s.p.36ggv1wt9dgnr.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* EVO type — PP Mori, served from evodesign.studio */
+  @font-face { font-family: "PP Mori"; src: url("https://www.evodesign.studio/_next/static/media/PPMori_Extralight-s.p.12axacsl3vlu6.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+  @font-face { font-family: "PP Mori"; src: url("https://www.evodesign.studio/_next/static/media/PPMori_ExtralightItalic-s.p.3_jmi-49-4zhb.woff2") format("woff2"); font-weight: 200; font-style: italic; font-display: swap; }
+  @font-face { font-family: "PP Mori"; src: url("https://www.evodesign.studio/_next/static/media/PPMori_Regular-s.p.36ggv1wt9dgnr.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "PP Mori"; src: url("https://www.evodesign.studio/_next/static/media/PPMori_SemiBold-s.p.2dw6ntk-b-x28.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
+  /* EVO tokens */
+  :root {
+    --color-background: #0c0a08;
+    --color-foreground: #fff;
+    --color-brand: #f35d2b;
+    --color-primary-100: #ffe8e6;
+    --color-primary-600: #f35d2b;
+    --color-primary-800: #b9370f;
+    --color-cream: #ffedbc;
+    --color-gray-50: #f6faff;
+    --color-gray-100: #e6e6e6;
+    --color-gray-200: #d8dcdb;
+    --color-gray-300: #cacaca;
+    --color-gray-400: #a4a4a4;
+    --color-gray-500: #82807f;
+    --color-gray-600: #595451;
+    --color-gray-700: #373432;
+    --color-gray-800: #0c0a08;
+    --color-danger: #e40014;
+
+    --font-sans: "PP Mori", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --text-display: clamp(2.5rem, 1.464rem + 4.42vw, 5rem);
+    --text-h2: clamp(1.75rem, 1.232rem + 2.21vw, 3rem);
+    --text-h5: clamp(1.125rem, 1.073rem + .22vw, 1.25rem);
+    --text-lg: 1.125rem;
+    --text-body: 1rem;
+    --text-small: .875rem;
+    --text-hat: .875rem;
+
+    --radius-xl: .75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --ease-out: cubic-bezier(0, 0, .2, 1);
+    --ease-out-smooth: cubic-bezier(.16, 1, .3, 1);
+    --ease-underline: cubic-bezier(.22, 1, .36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--color-gray-800);
+    font: 400 var(--text-body)/1.5 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; }
+  .brand { color: var(--color-brand); }
+  .hat { font-size: var(--text-hat); font-weight: 600; line-height: 1; text-transform: uppercase; letter-spacing: .02em; color: var(--color-gray-600); margin: 0; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+
+  /* Header */
+  .topbar { position: sticky; top: 0; z-index: 20; background: var(--color-background); color: var(--color-foreground); }
+  .topbar-inner { max-width: 1280px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { display: block; width: 58px; height: 22px; color: #fff; }
+  .steps { display: flex; gap: 4px; }
+  .steps a {
+    font-size: var(--text-small); text-decoration: none; color: var(--color-gray-200);
+    padding: 8px 14px; border-radius: 999px; white-space: nowrap;
+    transition: background-color .3s var(--ease-out), color .3s var(--ease-out);
+  }
+  .steps a:hover { color: #fff; background: rgba(255,255,255,.08); }
+  .steps a.active { background: #fff; color: var(--color-gray-800); }
+  .progress { height: 2px; background: rgba(255,255,255,.08); }
+  .progress > span { display: block; height: 100%; width: 0; background: var(--color-brand); transition: width .7s var(--ease-out-smooth); }
+
+  /* Hero */
+  .hero { background: var(--color-background); color: var(--color-foreground); padding: 120px 0 112px; }
+  .hero .hat { color: var(--color-gray-200); margin-bottom: 28px; }
+  h1 { font-size: var(--text-display); font-weight: 200; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 28px; }
+  .lead { font-size: var(--text-lg); line-height: 1.55; color: var(--color-gray-200); max-width: 600px; margin: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; font-size: var(--text-small); color: var(--color-gray-400); }
+  .meta span { display: inline-flex; align-items: center; gap: 10px; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--color-primary-800); background: var(--color-primary-100);
+    padding: 5px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  .tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--color-brand); }
+  .hero .tag { color: var(--color-gray-800); background: var(--color-cream); }
+
+  /* Sections */
+  form { padding-bottom: 40px; }
+  .section { padding: 96px 0 24px; }
+  .section + .section { border-top: 1px solid var(--color-gray-100); }
+  .section-head { margin-bottom: 48px; }
+  .section-head .hat { margin-bottom: 20px; }
+  h2 { font-size: var(--text-h2); font-weight: 200; line-height: 1.2; margin: 0 0 16px; letter-spacing: -.005em; }
+  .section-intro { color: var(--color-gray-600); margin: 0; max-width: 560px; }
+
+  /* Underline fields (EVO contact form pattern) */
+  .field {
+    position: relative; display: flex; flex-direction: column; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--color-gray-300);
+    margin-bottom: 36px;
+  }
+  .field::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+    background: var(--color-brand); transform: scaleX(0); transform-origin: left;
+    transition: transform .7s var(--ease-underline); pointer-events: none;
+  }
+  .field:focus-within::after { transform: scaleX(1); }
+  .field-label { display: flex; gap: 14px; align-items: baseline; color: var(--color-gray-800); }
+  .q-num { font-size: var(--text-small); color: var(--color-gray-500); font-variant-numeric: tabular-nums; min-width: 26px; flex-shrink: 0; }
+  .q-text { flex: 1; }
+  .q-text .tag { margin-left: 10px; vertical-align: 2px; }
+  .field textarea, .field input {
+    width: 100%; border: 0; outline: none; background: transparent; padding: 0;
+    font: 400 var(--text-body)/1.5 var(--font-sans); color: var(--color-gray-800);
+  }
+  .field textarea { resize: vertical; min-height: 48px; }
+  .field.q textarea { padding-left: 40px; }
+  ::placeholder { color: var(--color-gray-500); opacity: 1; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+  /* Scale */
+  .scale-head { margin: 56px 0 8px; }
+  .scale-head p { margin: 0; }
+  .scale-head .help { color: var(--color-gray-600); font-size: var(--text-small); margin-top: 6px; }
+  .scales { margin-top: 24px; border-top: 1px solid var(--color-gray-100); }
+  .scale {
+    border: 0; margin: 0; padding: 16px 0; border-bottom: 1px solid var(--color-gray-100);
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+  }
+  .scale legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .pole.right { text-align: right; }
+  .dots { display: flex; gap: 8px; }
+  .dots input { position: absolute; opacity: 0; pointer-events: none; }
+  .dots label {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid var(--color-gray-200); background: #fff;
+    font-size: var(--text-small); color: var(--color-gray-600); cursor: pointer;
+    transition: border-color .2s var(--ease-out), background-color .2s var(--ease-out), color .2s var(--ease-out);
+  }
+  .dots label:hover { border-color: var(--color-gray-400); color: var(--color-gray-800); }
+  .dots input:checked + label { background: var(--color-gray-800); border-color: var(--color-gray-800); color: #fff; }
+  .dots input:focus-visible + label { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+
+  /* Materials */
+  .opt {
+    font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--color-gray-600); background: var(--color-gray-100); padding: 5px 9px; border-radius: 999px;
+    margin-left: 10px; vertical-align: 2px; white-space: nowrap;
+  }
+  .checks-note { color: var(--color-gray-600); font-size: var(--text-small); margin: -8px 0 4px; }
+  .files { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--color-gray-100); }
+  .files > p { color: var(--color-gray-600); margin: 0 0 24px; max-width: 560px; }
+  .checks { border: 0; padding: 0; margin: 0 0 36px; display: grid; gap: 14px; }
+  .checks legend { padding: 0; margin-bottom: 16px; }
+  .check { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; }
+  .check input { appearance: none; -webkit-appearance: none; flex-shrink: 0; margin: 2px 0 0; width: 20px; height: 20px; border: 1px solid var(--color-gray-300); border-radius: 6px; background: #fff; display: grid; place-items: center; cursor: pointer; transition: background-color .2s var(--ease-out), border-color .2s var(--ease-out); }
+  .check input::after { content: ""; width: 10px; height: 6px; border: 1.5px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
+  .check input:checked { background: var(--color-gray-800); border-color: var(--color-gray-800); }
+  .check input:checked::after { opacity: 1; }
+  .check input:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+
+  /* EVO button */
+  .submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; padding: 24px 0 0; }
+  .btn {
+    position: relative; isolation: isolate; display: inline-flex; align-items: center;
+    height: 52px; padding: 0 20px 0 58px; border: 0; border-radius: 999px; overflow: hidden;
+    background: var(--color-background); cursor: pointer; font: inherit;
+  }
+  .btn[disabled] { cursor: progress; opacity: .6; }
+  .btn .sizer { visibility: hidden; font-weight: 600; white-space: nowrap; }
+  .btn .fill {
+    position: absolute; top: 2px; bottom: 2px; left: 2px; right: calc(100% - 50px);
+    border-radius: 999px; background: #fff; color: var(--color-gray-800);
+    transition: right .5s var(--ease-out);
+  }
+  .btn .ico { position: absolute; top: 0; bottom: 0; width: 48px; display: flex; align-items: center; justify-content: center; }
+  .btn .ico svg { width: 24px; height: 24px; }
+  .btn .ico.a { left: 0; transition: opacity .2s var(--ease-out); }
+  .btn .ico.b { right: 0; opacity: 0; transition: opacity .2s var(--ease-out) .2s; }
+  .btn .label {
+    position: absolute; top: 50%; left: 58px; transform: translateY(-50%);
+    white-space: nowrap; color: #fff; mix-blend-mode: difference;
+    transition: left .5s var(--ease-out);
+  }
+  .btn:hover:not([disabled]) .fill, .btn:focus-visible .fill { right: 2px; }
+  .btn:hover:not([disabled]) .ico.a, .btn:focus-visible .ico.a { opacity: 0; }
+  .btn:hover:not([disabled]) .ico.b, .btn:focus-visible .ico.b { opacity: 1; }
+  .btn:hover:not([disabled]) .label, .btn:focus-visible .label { left: 20px; }
+  .btn:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+  .hint { color: var(--color-gray-600); font-size: var(--text-small); margin: 0; max-width: 380px; }
+  .status { margin-top: 20px; min-height: 1.5em; font-size: var(--text-small); }
+  .status.error { color: var(--color-danger); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* Thank you */
+  .thanks { display: none; background: var(--color-background); color: #fff; padding: 160px 0; min-height: 70vh; }
+  .thanks .hat { color: var(--color-gray-200); margin-bottom: 24px; }
+  .thanks p { color: var(--color-gray-200); max-width: 480px; margin: 0; font-size: var(--text-lg); }
+  body.sent .hero, body.sent form, body.sent .steps, body.sent .progress { display: none; }
+  body.sent .thanks { display: block; }
+
+  footer { border-top: 1px solid var(--color-gray-100); }
+  footer .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 28px; padding-bottom: 40px; color: var(--color-gray-600); font-size: var(--text-small); }
+  footer .logo { color: var(--color-gray-800); width: 46px; height: 17px; }
+  body.sent footer { border-top: 0; }
+
+  @media (max-width: 720px) {
+    .container { padding: 0 20px; }
+    .topbar-inner { padding: 14px 20px; }
+    .steps a { padding: 7px 11px; }
+    .steps .t { display: none; }
+    .hero { padding: 72px 0 72px; }
+    .section { padding: 64px 0 12px; }
+    .section-head { margin-bottom: 36px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .field.q textarea { padding-left: 0; }
+    .field-label { flex-wrap: wrap; gap: 6px 12px; }
+    .scale { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .dots { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; }
+    .dots label { width: 46px; height: 46px; }
+    .submit-row { flex-direction: column; align-items: stretch; }
+    .btn { width: 100%; }
+    .thanks { padding: 96px 0; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="evo-logo" viewBox="0 0 58.1155 21.6342">
+    <path d="M24.4964 21.5562L16.498 0.781738H20.2905L26.3478 16.6894L32.1992 0.781738H35.9634L28.2009 21.5562H24.4964Z" fill="currentColor"/>
+    <path d="M14.967 18.3502V21.5546H2.67477C0.92134 21.5546 -0.5 20.12 -0.5 18.3502V3.98607C-0.5 2.21631 0.92134 0.781738 2.67477 0.781738H14.967V3.98607H2.99855V18.3502H14.9654H14.967Z" fill="currentColor"/>
+    <path d="M13.378 9.61084H4.58594V12.7263H13.378V9.61084Z" fill="currentColor"/>
+    <path d="M48.4649 9.84196L47.2256 5.979L45.9799 9.8401L42.1562 11.0918L45.9781 12.35L47.2173 16.212L48.463 12.3519L52.2876 11.0992L48.4649 9.84196Z" fill="#FF7846"/>
+    <path d="M47.2502 0.701172C47.2428 0.701172 47.2354 0.701172 47.2281 0.701172L47.6507 3.82374C51.2 4.01251 53.9713 6.70826 54.183 10.6287L57.5629 11.0955L54.1849 11.5604C53.9851 15.4474 51.1889 18.1719 47.6451 18.3607L47.2207 21.4824C47.2308 21.4824 47.241 21.4824 47.2511 21.4824C53.1703 21.4824 57.5795 17.2532 57.5795 11.1122C57.5795 4.97123 53.1693 0.701172 47.2502 0.701172Z" fill="currentColor"/>
+    <path d="M46.7941 18.357C43.0459 18.1347 40.4523 15.2047 40.2598 11.5502L36.9417 11.088L40.2626 10.6287C40.4698 6.95654 43.0284 4.04506 46.7996 3.82746L47.224 0.701172C40.9992 0.71605 36.8652 5.26507 36.8652 11.1122C36.8652 16.9594 40.9964 21.4638 47.2167 21.4824L46.7941 18.357V18.357Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://evodesign.studio" aria-label="EVO Design Studio"><svg class="logo"><use href="#evo-logo"/></svg></a>
+    <nav class="steps" aria-label="Secções">
+      <a href="#s1">01<span class="t"> Projeto</span></a>
+      <a href="#s2">02<span class="t"> Público</span></a>
+      <a href="#s3">03<span class="t"> Visual</span></a>
+      <a href="#s4">04<span class="t"> Materiais</span></a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</div>
+
+<header class="hero">
+  <div class="container">
+    <p class="hat">Briefing de identidade visual</p>
+    <h1>Briefing Empreendimento <span class="brand">Faro</span></h1>
+    <p class="lead">Estas perguntas focam-se no que precisamos para criar a identidade visual do empreendimento e o respetivo brand book. Para a brochura, o plan book, o outdoor e o sales office pedimos apenas materiais de projetos anteriores, como referência.</p>
+    <div class="meta">
+      <span><span class="tag">Essencial</span> perguntas mais importantes para começar</span>
+      <span>As respostas ficam guardadas neste dispositivo enquanto preenchem</span>
+    </div>
+  </div>
+</header>
+
+<form id="briefing" action="https://api.web3forms.com/submit" method="POST" novalidate>
+  <input type="hidden" name="access_key" value="02723e03-58b2-4cb2-991c-2132b7251eab">
+  <div class="hp" aria-hidden="true">
+    <label>Não preencher <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+  </div>
+
+  <!-- 1. O projeto -->
+  <section class="section" id="s1">
+    <div class="container">
+      <div class="section-head">
+        <p class="hat">Secção 01</p>
+        <h2>O projeto</h2>
+        <p class="section-intro">O nome, a arquitetura e o lugar são a matéria-prima da marca.</p>
+      </div>
+      <label class="field q"><span class="field-label"><span class="q-num">1.1</span><span class="q-text">Qual é o nome do empreendimento e qual é a sua história ou significado?<span class="tag">Essencial</span></span></span>
+        <textarea name="q11" rows="2" data-label="Projeto · Nome e significado" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">1.2</span><span class="q-text">Qual é o conceito arquitetónico? Há formas, materiais ou detalhes da arquitetura que devam inspirar a marca?<span class="tag">Essencial</span></span></span>
+        <textarea name="q12" rows="2" data-label="Projeto · Conceito arquitetónico" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">1.3</span><span class="q-text">Que elementos da envolvente são marcantes (luz, falésias, vegetação, história do local, tradição conserveira) e quais são clichés a evitar?</span></span>
+        <textarea name="q13" rows="2" data-label="Projeto · Envolvente e clichés a evitar" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">1.4</span><span class="q-text">Que áreas comuns ou serviços definem a experiência de viver ali (piscina, spa, rooftop, jardins, concierge)?</span></span>
+        <textarea name="q14" rows="2" data-label="Projeto · Áreas comuns e serviços" data-track placeholder="Escrevam aqui"></textarea></label>
+    </div>
+  </section>
+
+  <!-- 2. Público e posicionamento -->
+  <section class="section" id="s2">
+    <div class="container">
+      <div class="section-head">
+        <p class="hat">Secção 02</p>
+        <h2>Público e posicionamento</h2>
+        <p class="section-intro">Quem compra, e porque compra aqui, define o registo da marca.</p>
+      </div>
+      <label class="field q"><span class="field-label"><span class="q-num">2.1</span><span class="q-text">Quem é o comprador principal (residente permanente, segunda habitação, investidor, reformado) e de que nacionalidades? Ordenem por prioridade.<span class="tag">Essencial</span></span></span>
+        <textarea name="q21" rows="2" data-label="Público · Comprador e nacionalidades" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">2.2</span><span class="q-text">O que mais valoriza este comprador e que estilo de vida procura (praia, wellness, golfe, vida urbana, família)?</span></span>
+        <textarea name="q22" rows="2" data-label="Público · O que valoriza e estilo de vida" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">2.3</span><span class="q-text">Porque é que alguém deve comprar aqui e não noutro empreendimento? Que concorrentes conhecem bem e como se querem distinguir visualmente deles?<span class="tag">Essencial</span></span></span>
+        <textarea name="q23" rows="2" data-label="Público · Diferenciação e concorrentes" data-track placeholder="Escrevam aqui"></textarea></label>
+    </div>
+  </section>
+
+  <!-- 3. Personalidade e linguagem visual -->
+  <section class="section" id="s3">
+    <div class="container">
+      <div class="section-head">
+        <p class="hat">Secção 03</p>
+        <h2>Personalidade e linguagem visual</h2>
+        <p class="section-intro">Conhecer preferências e limites antes de desenhar poupa rondas de revisão.</p>
+      </div>
+      <label class="field q"><span class="field-label"><span class="q-num">3.1</span><span class="q-text">Que três palavras devem descrever a marca e que sensação deve ficar a quem a vê pela primeira vez?<span class="tag">Essencial</span></span></span>
+        <textarea name="q31" rows="2" data-label="Visual · Três palavras e primeira impressão" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">3.2</span><span class="q-text">Há cores, imagens ou estilos que associam ao projeto, e outros que estão fora de questão?<span class="tag">Essencial</span></span></span>
+        <textarea name="q32" rows="2" data-label="Visual · Cores, imagens e estilos" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">3.3</span><span class="q-text">Há materiais, texturas ou padrões que devam fazer parte da linguagem (pedra, madeira, cal, azulejo, padrões geométricos)?</span></span>
+        <textarea name="q33" rows="2" data-label="Visual · Materiais, texturas e padrões" data-track placeholder="Escrevam aqui"></textarea></label>
+      <label class="field q"><span class="field-label"><span class="q-num">3.4</span><span class="q-text">Se a marca fosse um hotel ou uma marca de moda, qual seria? Indiquem 3 a 5 referências visuais de que gostam e 2 a 3 de que não gostam, com o porquê.<span class="tag">Essencial</span></span></span>
+        <textarea name="q34" rows="2" data-label="Visual · Referências visuais" data-track placeholder="Podem colar links de sites, Instagram ou Pinterest"></textarea></label>
+
+      <div class="scale-head">
+        <p>Posicionem a marca entre cada par de polos</p>
+        <p class="help">1 = totalmente o polo da esquerda, 5 = totalmente o da direita.</p>
+      </div>
+      <div class="scales" id="scales"></div>
+    </div>
+  </section>
+
+  <!-- 4. Materiais a enviar -->
+  <section class="section" id="s4">
+    <div class="container">
+      <div class="section-head">
+        <p class="hat">Secção 04</p>
+        <h2>Materiais a enviar</h2>
+        <p class="section-intro">Partilhem connosco uma pasta (Google Drive, Dropbox ou WeTransfer) com o que tiverem e assinalem abaixo o que incluíram. Com estes ficheiros conseguimos começar a pesquisa visual enquanto chegam as respostas.</p>
+      </div>
+
+      <fieldset class="checks" data-label="Pasta · Materiais anteriores de referência">
+        <legend>Materiais de projetos anteriores, como referência <span class="opt">Opcional</span></legend>
+        <p class="checks-note">A mensagem e o copy de cada peça serão alinhados mais tarde.</p>
+        <label class="check"><input type="checkbox" name="ref" value="Brochura"> Brochura</label>
+        <label class="check"><input type="checkbox" name="ref" value="Plan book"> Plan book</label>
+        <label class="check"><input type="checkbox" name="ref" value="Outdoor / lona"> Outdoor / lona</label>
+        <label class="check"><input type="checkbox" name="ref" value="Montra / sales office"> Montra / sales office</label>
+      </fieldset>
+
+      <fieldset class="checks" data-label="Pasta · Ficheiros do novo projeto">
+        <legend>Do novo projeto</legend>
+        <label class="check"><input type="checkbox" name="files" value="Renders, plantas ou imagens do projeto"> Renders, plantas ou imagens do projeto de arquitetura</label>
+        <label class="check"><input type="checkbox" name="files" value="Fotografias do terreno e da envolvente"> Fotografias do terreno e da envolvente</label>
+        <label class="check"><input type="checkbox" name="files" value="Referências visuais"> Referências visuais (links ou imagens)</label>
+      </fieldset>
+
+      <label class="field"><span class="field-label">Link da pasta partilhada</span>
+        <input type="url" name="pasta" data-label="Link da pasta partilhada" placeholder="https://"></label>
+      <label class="field"><span class="field-label">Há mais alguma coisa que devamos saber?</span>
+        <textarea name="notas" rows="2" data-label="Notas finais" placeholder="Escrevam aqui"></textarea></label>
+
+      <div class="submit-row">
+        <button type="submit" class="btn" id="submit">
+          <span class="sizer" aria-hidden="true">Enviar briefing</span>
+          <span class="fill" aria-hidden="true">
+            <span class="ico a"><svg viewBox="0 0 24 24" fill="none"><path d="M17.3011 6.71117L6.70161 17.3107M8.82222 6.72319L17.3025 6.69562L17.275 15.1759" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="ico b"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
+          <span class="label" id="submit-label">Enviar briefing</span>
+        </button>
+        <p class="hint">Podem enviar mesmo sem responder a tudo; o resto fechamos na reunião de kickoff.</p>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+</form>
+
+<section class="thanks" aria-live="polite">
+  <div class="container">
+    <p class="hat">Briefing enviado</p>
+    <h1>Obrigado<span class="brand">.</span></h1>
+    <p>Recebemos o vosso briefing. Vamos analisá-lo e entraremos em contacto para marcar a reunião de kickoff.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <svg class="logo" role="img" aria-label="EVO"><use href="#evo-logo"/></svg>
+    <a href="https://evodesign.studio">evodesign.studio</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ENDPOINT = "https://api.web3forms.com/submit";
+  var DRAFT_KEY = "briefing-faro-v1";
+
+  var SCALES = [
+    ["Clássico", "Contemporâneo"],
+    ["Discreto", "Expressivo"],
+    ["Local / algarvio", "Internacional"],
+    ["Exclusivo", "Acessível"],
+    ["Sóbrio", "Caloroso"],
+    ["Minimalista", "Rico em detalhe"],
+    ["Natureza / mar", "Urbano / arquitetura"],
+    ["Institucional", "Próximo"],
+    ["Factual", "Poético"]
+  ];
+
+  var form = document.getElementById("briefing");
+  var statusEl = document.getElementById("status");
+  var btn = document.getElementById("submit");
+  var btnLabel = document.getElementById("submit-label");
+
+  // Scale rows
+  var scalesEl = document.getElementById("scales");
+  SCALES.forEach(function (pair, i) {
+    var fs = document.createElement("fieldset");
+    fs.className = "scale";
+    fs.setAttribute("data-label", "Escala · " + pair[0] + " ↔ " + pair[1]);
+    var html = "<legend>" + pair[0] + " ou " + pair[1] + "</legend>" +
+      '<span class="pole">' + pair[0] + '</span><div class="dots">';
+    for (var n = 1; n <= 5; n++) {
+      var id = "sc" + i + "-" + n;
+      html += '<input type="radio" id="' + id + '" name="scale' + i + '" value="' + n + '">' +
+              '<label for="' + id + '" aria-label="' + n + '">' + n + "</label>";
+    }
+    html += '</div><span class="pole right">' + pair[1] + "</span>";
+    fs.innerHTML = html;
+    scalesEl.appendChild(fs);
+  });
+
+  // Draft autosave (per-device convenience only)
+  function namedFields() { return form.querySelectorAll("textarea[name], input[name]"); }
+  function saveDraft() {
+    var data = {};
+    namedFields().forEach(function (el) {
+      if (el.name === "_honey" || el.type === "hidden") return;
+      if (el.type === "radio") { if (el.checked) data[el.name] = el.value; }
+      else if (el.type === "checkbox") { data[el.name] = data[el.name] || []; if (el.checked) data[el.name].push(el.value); }
+      else data[el.name] = el.value;
+    });
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function loadDraft() {
+    var data;
+    try { data = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { data = null; }
+    if (!data) return;
+    namedFields().forEach(function (el) {
+      if (!(el.name in data)) return;
+      var v = data[el.name];
+      if (el.type === "radio") el.checked = (v === el.value);
+      else if (el.type === "checkbox") el.checked = Array.isArray(v) && v.indexOf(el.value) !== -1;
+      else el.value = v;
+    });
+  }
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+
+  // Progress over the tracked questions
+  var tracked = form.querySelectorAll("[data-track]");
+  var progressEl = document.getElementById("progress");
+  function updateProgress() {
+    var filled = 0;
+    tracked.forEach(function (el) { if (el.value.trim()) filled++; });
+    progressEl.style.width = Math.round(filled / tracked.length * 100) + "%";
+  }
+
+  // Auto-grow textareas
+  function grow(el) { el.style.height = "auto"; el.style.height = (el.scrollHeight + 2) + "px"; }
+  function growAll() { form.querySelectorAll("textarea").forEach(grow); }
+
+  loadDraft();
+  updateProgress();
+  growAll();
+  window.addEventListener("load", growAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(growAll);
+  var resizeTimer;
+  window.addEventListener("resize", function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(growAll, 150); });
+
+  var saveTimer;
+  form.addEventListener("input", function (e) {
+    if (e.target.tagName === "TEXTAREA") grow(e.target);
+    updateProgress();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveDraft, 400);
+  });
+  form.addEventListener("change", saveDraft);
+
+  // Current section in the top bar
+  var links = document.querySelectorAll(".steps a");
+  var sections = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute("href")); });
+  function onScroll() {
+    var current = -1;
+    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < 160) current = i; });
+    links.forEach(function (a, i) { a.classList.toggle("active", i === current); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Answers in page order, labelled for the email
+  function collect() {
+    var first = (form.querySelector('textarea[name="q11"]').value.trim().split("\n")[0] || "").slice(0, 60);
+    var payload = {
+      access_key: form.access_key.value,
+      subject: "Briefing Empreendimento Faro — " + (first || "nova resposta"),
+      from_name: "Briefing Empreendimento Faro"
+    };
+    form.querySelectorAll("[data-label]").forEach(function (el) {
+      var value;
+      if (el.tagName === "FIELDSET") {
+        value = Array.prototype.map.call(el.querySelectorAll("input:checked"), function (i) { return i.value; }).join("; ");
+      } else {
+        value = el.value.trim();
+      }
+      payload[el.getAttribute("data-label")] = value || "—";
+    });
+    return payload;
+  }
+
+  function hasAnswers() {
+    var any = false;
+    form.querySelectorAll("textarea, input[type=url]").forEach(function (el) { if (el.value.trim()) any = true; });
+    if (form.querySelector("input[type=radio]:checked, input[type=checkbox]:checked")) any = true;
+    return any;
+  }
+
+  function setStatus(msg, isError) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (isError ? " error" : "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form._honey.value) return;
+    if (!hasAnswers()) { setStatus("Respondam a pelo menos uma pergunta antes de enviar.", true); return; }
+
+    btn.disabled = true;
+    btnLabel.textContent = "A enviar…";
+    setStatus("");
+
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(collect())
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
+      .then(function (res) {
+        if (res.ok && String(res.body.success) === "true") {
+          clearDraft();
+          document.body.classList.add("sent");
+          window.scrollTo(0, 0);
+          return;
+        }
+        var msg = (res.body && res.body.message) || "";
+        var err = new Error(msg);
+        err.userMessage = "Não foi possível enviar. As respostas continuam guardadas neste dispositivo; tentem novamente dentro de momentos.";
+        throw err;
+      })
+      .catch(function (err) {
+        setStatus((err && err.userMessage) ||
+          "Sem ligação ao servidor. As respostas continuam guardadas neste dispositivo; tentem novamente.", true);
+        btn.disabled = false;
+        btnLabel.textContent = "Enviar briefing";
+      });
+  });
+})();
+</script>
+</body>
+</html>
